@@ -1,4 +1,4 @@
-# Webpack공부
+# Webpack study
 
 # webpack
 ## 참고 영상 : https://www.youtube.com/watch?v=WQue1AN93YU
