@@ -29,10 +29,10 @@
 11. ES6 import와 export 기본 문법
 12. 주요속성
 
-### entry : 웹팩에서 웹 자원을 변환하기 위해 필요한 최초 진입점(변환 자바스크립트 파일 경로) & (변환 = build = complie = bundling)
-### output : 웹팩을 돌리고 난 결과물의 파일 경로
-### loader : 웹팩이 웹 애플리케이션을 해석할 때 자바스크립트 파일이 아닌 웹 자원(HTML,CSS,IMAGES)들을 변환할 수 있도록 도와주는 속성 (module)
-### plugin : 결과물에 있는(형태) 값을 바꾸는 것 (기본적인 동작에 추가적인 기능을 제공)
+- entry : 웹팩에서 웹 자원을 변환하기 위해 필요한 최초 진입점(변환 자바스크립트 파일 경로) & (변환 = build = complie = bundling)
+- output : 웹팩을 돌리고 난 결과물의 파일 경로
+- loader : 웹팩이 웹 애플리케이션을 해석할 때 자바스크립트 파일이 아닌 웹 자원(HTML,CSS,IMAGES)들을 변환할 수 있도록 도와주는 속성 (module)
+- plugin : 결과물에 있는(형태) 값을 바꾸는 것 (기본적인 동작에 추가적인 기능을 제공)
 
 1.  HtmlWebpackPlugin : 웹팩으로 빌드한 결과물로 HTML파일을 생성해주는 플러그인
 2.  ProgressPlugin : 웹팩의 빌드 진행율을 표시해주는 플러그인
