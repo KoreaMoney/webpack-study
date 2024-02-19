@@ -87,3 +87,60 @@
 1. mode : development, production, none (환경에 맞는 옵션을 선택해야 한다.)
 2. entry : 모듈의 시작점 -> entry를 통해서 모든 모듈들이 합쳐진다.
 3. output : 합친 모듈을 저장하는 경로를 설정한다.
+4. loader : 각 파일을 처리할 옵션 (자주사용하는 loader : css-loader(css모듈을 사용할 수 있다.),  )
+- style-loader : js에 있는 css를 html이 인식할 수 있게 해준다.
+- file-loader : image와 같은 파일을 읽어내는 로더이다.
+- publicPath : loader가 처리하는 파일을 모듈로서 처리를 진행할 때 경로 제일 앞에 들어가는 경로이다.
+- url-loader : file을 url를 기본으로 처리하는 loader이며 ex) <img src="url경로" />
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+## webpack plugin
+1. output으로 만들어질 것을 plugin이 진행된다.
+2. BannerPlugin : build한 결과물에 빌드 시간 또는 커밋 정보를 전달
+### ex) 사용
+```
+const webpack =  require("webpack");
+const childProcess = require("child_process"); // 노드 모듈에서 터미널 내용을 작성할 수 있도록 해주는 것.
+plugin:[
+    new webpack.BannerPlugin({
+      banner:`
+        Build Date: ${new Date().toLocalString()}
+        Commit version: ${childProcess.execSync("git rev-parse --short HEAD")}
+        Author: ${childProcess.execSync("git config user.name")}
+      `
+    })
+]
+```
+
+3. DefinePlugin : 환경변수들을 웹에 제공하기 위한 플러그인
+4. HtmlTemplatePlugin : html파일을 처리하기 위한 플러그인
+- index.html을 source code로서 관리하고 싶을 때 사용한다.
+- 사용 : npm i html-webpack-plugin
+- 유동적으로 진행할 수 있다.
+- 사용 예시
+```
+ new HtmlWebpackPlugin({
+  template:"./src/index.html",
+  templateParameters:{
+    env: process.env.NODE_ENV === "development" ? "(개발용)":""
+  },
+  minify:process.env.NODE_ENV === "production" ? {
+    collapseWhitespace:true,
+    removeComments:true,
+  } : false
+ })
+
+```
+ 5. CleanWebpackPlugin : 사용하지 않는 build를 제거하여 깔끔한 build를 가져가게 한다.
+ - 사용예시
+```
+ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+ new CleanWebpackPlugin()
+```
+
+ 6. MiniCSSExtractPlugin : bundle결과에서 스타일만 따로 구성하는 플러그인 (페이지 로딩에 좋은 장점을 가진다.)
+ - 사용예시
+```
+  const MiniCssExtract = require("mini-css-extract-plugin");
+  ...( process.env.NODE_ENV = "production" ? [new MiniCssExtract({filename: "[name].css"})] : [] )
+```
