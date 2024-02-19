@@ -23,7 +23,7 @@ module.exports = {
           limit: 20000, // 20kb
         },
       },
-    ],
+    ], 
   },
 };
 
